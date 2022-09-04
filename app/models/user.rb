@@ -20,7 +20,13 @@ class User < ApplicationRecord
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
 
-  def following(user)
-    relationships.include?(followed_id: user.id)
+  def following?(user)
+    puts "**********************************"
+    puts relationships
+    puts user
+    puts user.id
+    puts relationships.where(follower_id: 2).exists?(followed_id: user.id)
+    puts "**********************************"
+    relationships.where(follower_id: 2).exists?(followed_id: user.id)
   end
 end
